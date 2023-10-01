@@ -8,4 +8,8 @@ void MakeSortedDecreasingArray_3_Heap(int size, ofstream& _file);
 
 void MakePseudoRandomSortedQuickArray(int size, ofstream& _file);
 
+void MakeSortedIncreasingQuickArray(int size, ofstream& _file);
+
+void MakeSortedDecreasingQuickArray(int size, ofstream& _file);
+
 void SortTestFirstCase(ofstream& file);
