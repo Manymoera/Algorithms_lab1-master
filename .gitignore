@@ -33,6 +33,9 @@
 *.out
 *.app
 *.sln
+*.vcxproj
+*.user
+*.filters
 
 #Project files
 [Bb]uild/
