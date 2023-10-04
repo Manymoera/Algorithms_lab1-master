@@ -10,7 +10,7 @@ int main()
     ofstream file;
     ofstream fileSecond;
     file.open("MeasurmentsFirstCase.txt", ofstream::out | ofstream::trunc);
-    //SortTestFirstCase(file);
+    SortTestFirstCase(file);
     file.close();
     fileSecond.open("MeasurmentsSecondCase.txt", ofstream::out | ofstream::trunc);
     SortTestSecondCase(fileSecond);
