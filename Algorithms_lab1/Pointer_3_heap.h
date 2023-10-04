@@ -1,57 +1,54 @@
 #pragma once
 #include <iostream>
+#include <vector>
 using namespace std;
 
 class DHeap
 {
 private:
     int d = 3;
-    int64_t* heap_pointer;
-    int64_t heap_size;
+    vector<int64_t> heap;
 public:
-    void heapify(int64_t* arr_point, int64_t arr_size)
+    void heapify(vector<int64_t> _heap)
     {
-        heap_size = arr_size;
-        heap_pointer = new int64_t[heap_size];
-        for (int i = 0; i < heap_size; i++)
+        heap.clear();
+        while (!_heap.empty())
         {
-            heap_pointer[i] = 0;
+            insert(_heap.back());
+            _heap.pop_back();
         }
-        for (int i = 0; i < heap_size; i++)
-        {
-            insert(arr_point[i], i);
-        }
+
     }
-    void insert(int64_t value, int i)
+    void insert(int value) 
     {
-        heap_pointer[i] = value;
-        bubble_up(i);
+        heap.push_back(value);
+        bubble_up(heap.size() - 1);
     }
     int bubble_up(int index)
     {
         int parent_index = (index - 1) / d;
-        if (index == 0 || heap_pointer[parent_index] >= heap_pointer[index])
+        if (index == 0 || heap[parent_index] >= heap[index])
         {
             return index;
         }
         else
         {
-            swap(heap_pointer[parent_index], heap_pointer[index]);
+            swap(heap[parent_index], heap[index]);
             return bubble_up(parent_index);
         }
     }
     void printHeap() {
-        for (int i = 0; i < heap_size; ++i)
+        for (int i = 0; i < heap.size(); ++i)
         {
-            cout << heap_pointer[i] << " ";
+            cout << heap[i] << " ";
         }
         cout << std::endl;
     }
     int getMaxElement()
     {
-        return heap_pointer[0];
+        return heap[0];
     }
-    void Make_3_Heap(int64_t* arr, int n, int i)
+    void Make_3_Heap(vector<int64_t>& arr, int n, int i)
     {
         int root = i;
 
@@ -74,14 +71,14 @@ public:
     }
     void sort()
     {
-        for (int i = heap_size / 2 - 1; i >= 0; i--)
-            Make_3_Heap(heap_pointer, heap_size, i);
+        for (int i = heap.size() / 2 - 1; i >= 0; i--)
+            Make_3_Heap(heap, heap.size(), i);
 
-        for (int i = heap_size - 1; i >= 0; i--)
+        for (int i = heap.size() - 1; i >= 0; i--)
         {
-            swap(heap_pointer[0], heap_pointer[i]);
+            swap(heap[0], heap[i]);
 
-            Make_3_Heap(heap_pointer, i, 0);
+            Make_3_Heap(heap, i, 0);
         }
     }
 };

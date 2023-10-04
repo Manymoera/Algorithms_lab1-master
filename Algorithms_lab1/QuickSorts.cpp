@@ -1,18 +1,21 @@
 #include <iostream>
 #include <algorithm>
+#include <vector>
 using namespace std;
 
-void QuickSort(int64_t* arr, int64_t left, int64_t right) {
+void QuickSort(vector<int64_t>& arr, int64_t left, int64_t right) {
     int i = left, j = right;
     int tmp;
     int pivot = arr[(left + right) / 2];
 
-    while (i <= j) {
+    while (i <= j) 
+    {
         while (arr[i] < pivot)
             i++;
         while (arr[j] > pivot)
             j--;
-        if (i <= j) {
+        if (i <= j) 
+        {
             tmp = arr[i];
             arr[i] = arr[j];
             arr[j] = tmp;

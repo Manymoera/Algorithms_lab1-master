@@ -14,8 +14,7 @@ void MakePseudoRandomSorted_3_Heap_Array(int size, ofstream& _file)
 
     DHeap heap_rand_sort;
 
-    int64_t* rand_arr;
-    rand_arr = new int64_t[size];
+    vector<int64_t> vec;
 
     cout << "\n";
 
@@ -23,10 +22,10 @@ void MakePseudoRandomSorted_3_Heap_Array(int size, ofstream& _file)
 
     for (int i = 0; i < size; i++)
     {
-        rand_arr[i] = rand() % 1'000'000'000;
+        vec.push_back(rand() % 1'000'000'000);
     }
 
-    heap_rand_sort.heapify(rand_arr, size);
+    heap_rand_sort.heapify(vec);
     cout << "Made an array" << "\n";
 
     auto start = high_resolution_clock::now();
@@ -46,18 +45,17 @@ void MakeSortedIncreasingArray_3_Heap(int size, ofstream& _file)
 {
     DHeap heap_inc_sort;
 
-    int64_t* arr;
-    arr = new int64_t[size];
+    vector<int64_t> vec;
 
     cout << "\n";
     cout << "Making increasing array of " << size << " elements" << "\n";
 
     for (int i = 0; i < size; i++)
     {
-        arr[i] = i;
+        vec.push_back(i);
     }
 
-    heap_inc_sort.heapify(arr, size);
+    heap_inc_sort.heapify(vec);
     cout << "Made an array" << "\n";
 
     auto start = high_resolution_clock::now();
@@ -77,18 +75,17 @@ void MakeSortedDecreasingArray_3_Heap(int size, ofstream& _file)
 {
     DHeap heap_inc_sort;
 
-    int64_t* arr;
-    arr = new int64_t[size];
+    vector<int64_t> vec;
 
     cout << "\n";
     cout << "Making increasing array of " << size << " elements" << "\n";
 
     for (int i = 0; i < size; i++)
     {
-        arr[i] = size - i;
+        vec.push_back(size - i);
     }
 
-    heap_inc_sort.heapify(arr, size);
+    heap_inc_sort.heapify(vec);
     cout << "Made an array" << "\n";
 
     auto start = high_resolution_clock::now();
@@ -108,21 +105,20 @@ void MakePseudoRandomSortedQuickArray(int size, ofstream& _file)
 {
     srand(time(NULL));
 
-    int64_t* arr;
-    arr = new int64_t[size];
+    vector<int64_t> vec;
 
     cout << "\n";
     cout << "Making unsorted random array of " << size << " elements" << "\n";
 
     for (int i = 0; i < size; i++)
     {
-        arr[i] = rand() % 1'000'000'000;
+        vec.push_back(rand() % 1'000'000'000);
     }
     cout << "Made an array" << "\n";
 
     auto start = high_resolution_clock::now();
 
-    QuickSort(arr, 0, size - 1);
+    QuickSort(vec, 0, vec.size() - 1);
     cout << "Array sorted";
 
     auto stop = high_resolution_clock::now();
@@ -135,22 +131,21 @@ void MakePseudoRandomSortedQuickArray(int size, ofstream& _file)
 
 void MakeSortedIncreasingQuickArray(int size, ofstream& _file)
 {
-    int64_t* arr;
-    arr = new int64_t[size];
+    vector<int64_t> vec;
 
     cout << "\n";
     cout << "Making increasing array of " << size << " elements" << "\n";
 
     for (int i = 0; i < size; i++)
     {
-        arr[i] = i;
+        vec.push_back(i);
     }
 
     cout << "Made an array" << "\n";
 
     auto start = high_resolution_clock::now();
 
-    QuickSort(arr, 0, size - 1);
+    QuickSort(vec, 0, vec.size() - 1);
     cout << "Array sorted";
 
     auto stop = high_resolution_clock::now();
@@ -163,22 +158,21 @@ void MakeSortedIncreasingQuickArray(int size, ofstream& _file)
 
 void MakeSortedDecreasingQuickArray(int size, ofstream& _file)
 {
-    int64_t* arr;
-    arr = new int64_t[size];
+    vector<int64_t> vec;
 
     cout << "\n";
     cout << "Making decreasing array of " << size << " elements" << "\n";
 
     for (int i = 0; i < size; i++)
     {
-        arr[i] = size - i;
+        vec.push_back(size - i);
     }
 
     cout << "Made an array" << "\n";
 
     auto start = high_resolution_clock::now();
 
-    QuickSort(arr, 0, size - 1);
+    QuickSort(vec, 0, vec.size() - 1);
     cout << "Array sorted";
 
     auto stop = high_resolution_clock::now();
@@ -194,6 +188,7 @@ void SortTestFirstCase(ofstream& file)
     cout << "\n";
 
     //-----------------------------3-Heap Sorts-----------------------------//
+
     file << "First Case: " << "\n\n\n";
     file << "Time measurments for 3-heap sorting a pseudo random array with numbers which have a maximum value of 10^9" << "\n";
     for (int64_t i = 1; i <= 1'000'001; i += 10'000)
